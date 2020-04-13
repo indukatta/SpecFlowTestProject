@@ -114,14 +114,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataSQLFunctions.cs" />
-    <Compile Include="ExtentReportHooks.cs" />
-    <Compile Include="PaymentsFeatureSteps.cs" />
+    <Compile Include="Hooks\ExtentReportHooks.cs" />
+    <Compile Include="StepDefinitions\PaymentsFeatureSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="PaymentsFeature.feature" />
+    <None Include="Features\PaymentsFeature.feature" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClearBank.DeveloperTest\ClearBank.DeveloperTest.csproj">

@@ -106,13 +106,13 @@ namespace ClearBank.DeveloperTest.Tests
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Make a payment")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "PaymentsFeature")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("unittest")]
         public virtual void MakeAPayment()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "unittest"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a payment", null, new string[] {
-                        "mytag"});
+                        "unittest"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -155,13 +155,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Payment Fail with invalid PaymentSheme")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "PaymentsFeature")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("unittest")]
         public virtual void PaymentFailWithInvalidPaymentSheme()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "unittest"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Payment Fail with invalid PaymentSheme", null, new string[] {
-                        "mytag"});
+                        "unittest"});
 #line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
