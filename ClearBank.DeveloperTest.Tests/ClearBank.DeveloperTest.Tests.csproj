@@ -121,6 +121,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Features\PaymentsFeature.feature" />
+    <None Include="ProjectInfoDoc.docx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClearBank.DeveloperTest\ClearBank.DeveloperTest.csproj">
