@@ -13,11 +13,9 @@ namespace ClearBank.DeveloperTest.Tests
     public sealed class ExtentReportHooks
     {
         public readonly ScenarioContext scenarioContext;
-       // public readonly FeatureContext featureContext;
 
         ExtentReportHooks(ScenarioContext context)
         {
-            //featureContext = fcontext;
             scenarioContext = context;
         }
 
@@ -28,8 +26,8 @@ namespace ClearBank.DeveloperTest.Tests
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            string path1 = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "");
-            string path = path1 + "\\Report\\index.html";
+            string baseFolder = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "");
+            string path = baseFolder + "\\Report\\index.html";
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
             htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Standard;
             extent = new ExtentReports();
@@ -41,14 +39,14 @@ namespace ClearBank.DeveloperTest.Tests
         {
             //Create dynamic feature name
             featureName = extent.CreateTest<Feature>(featureContext.FeatureInfo.Title);
-            Console.WriteLine("BeforeFeature");
         }
+
         [BeforeScenario]
         public void BeforeScenario()
         {
-            Console.WriteLine("BeforeScenario");
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title);
         }
+
         [AfterStep]
         public void InsertReportingSteps()
         {
@@ -87,8 +85,8 @@ namespace ClearBank.DeveloperTest.Tests
         public void AfterScenario()
         {
             Console.WriteLine("AfterScenario");
-            //implement logic that has to run after executing each scenario
         }
+
         [AfterTestRun]
         public static void AfterTestRun()
         {

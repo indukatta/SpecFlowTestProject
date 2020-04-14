@@ -52,20 +52,15 @@ namespace ClearBank.DeveloperTest.Tests
             Dictionary<String, Object> debitorAccount = (Dictionary<String, Object>)context["DebitorAccount"];
             Dictionary<String, Object> creditorAccount = (Dictionary<String, Object>)context["CreditorAccount"];
             DateTime paymentDate = DateTime.Now;
-
             string creditorAccountNumber = creditorAccount["AccountNumber"].ToString();
-            string debitorAccountNumber = debitorAccount["AccountNumber"].ToString();
-           
+            string debitorAccountNumber = debitorAccount["AccountNumber"].ToString();           
             decimal debitAmount = (decimal)context["DebitAmount"];
-
-           // Object status = Enum.Parse(typeof(AccountStatus), debitorAccount["AccountStatus"].ToString());
+            
             PaymentScheme paymentScheme = (PaymentScheme)Enum.Parse(typeof(PaymentScheme), debitorAccount["PaymentScheme"].ToString());
-
-            MakePaymentRequest request = new MakePaymentRequest(creditorAccountNumber,
-            debitorAccountNumber, debitAmount, paymentDate, paymentScheme);
-
+            MakePaymentRequest request = new MakePaymentRequest(creditorAccountNumber,debitorAccountNumber, debitAmount, paymentDate, paymentScheme);
             PaymentService paymentService = new PaymentService();
             MakePaymentResult result  = paymentService.MakePayment(request);
+            
             context["MakePaymentResult"] = result;
         }
 
@@ -76,13 +71,10 @@ namespace ClearBank.DeveloperTest.Tests
             Dictionary<String, Object> debitorAccount = (Dictionary<String, Object>)context["DebitorAccount"];
             Dictionary<String, Object> creditorAccount = (Dictionary<String, Object>)context["CreditorAccount"];
             DateTime paymentDate = DateTime.Now;
-
             string creditorAccountNumber = creditorAccount["AccountNumber"].ToString();
             string debitorAccountNumber = debitorAccount["AccountNumber"].ToString();
-
             decimal debitAmount = (decimal)context["DebitAmount"];
 
-            // Object status = Enum.Parse(typeof(AccountStatus), debitorAccount["AccountStatus"].ToString());
             PaymentScheme debitorPaymentScheme = (PaymentScheme)Enum.Parse(typeof(PaymentScheme), debitorAccount["PaymentScheme"].ToString());
 
             //Get invalid payment scheme
@@ -96,11 +88,10 @@ namespace ClearBank.DeveloperTest.Tests
                 }
             }
 
-            MakePaymentRequest request = new MakePaymentRequest(creditorAccountNumber,
-                debitorAccountNumber, debitAmount, paymentDate, debitorPaymentScheme);
-
+            MakePaymentRequest request = new MakePaymentRequest(creditorAccountNumber, debitorAccountNumber, debitAmount, paymentDate, debitorPaymentScheme);
             PaymentService paymentService = new PaymentService();
             MakePaymentResult result = paymentService.MakePayment(request);
+
             context["MakePaymentResult"] = result;
         }
 
@@ -125,10 +116,8 @@ namespace ClearBank.DeveloperTest.Tests
             Dictionary<String, Object> postDebitorAccountDetails = DataSQLFunctions.GetAccountDetails(debitorAccountNumber);
             decimal postDebitorBalance = decimal.Parse(postDebitorAccountDetails["Balance"].ToString());
 
-
             Assert.AreEqual(initialDebitorBalance - debitAmount, postDebitorBalance,"Verify amount["+ debitAmount +"] deducted from debitor account");
-            Console.WriteLine("Expected account balance = initialDebitorBalance ["+ initialDebitorBalance + "] - " +
-                "debitAmount ["+debitAmount +"] = ["+ (initialDebitorBalance- debitAmount) + "]");
+            Console.WriteLine("Expected account balance = initialDebitorBalance ["+ initialDebitorBalance + "] - " + "debitAmount ["+debitAmount +"] = ["+ (initialDebitorBalance- debitAmount) + "]");
             Console.WriteLine("Actual account balance after debit = ["+ postDebitorBalance + "]");
         }
 
@@ -139,11 +128,9 @@ namespace ClearBank.DeveloperTest.Tests
             Dictionary<String, Object> debitorAccount = (Dictionary<String, Object>)context["DebitorAccount"];
             string debitorAccountNumber = debitorAccount["AccountNumber"].ToString();
             decimal initialDebitorBalance = decimal.Parse(debitorAccount["Balance"].ToString());
-            //decimal debitAmount = (decimal)context["DebitAmount"];
 
             Dictionary<String, Object> postDebitorAccountDetails = DataSQLFunctions.GetAccountDetails(debitorAccountNumber);
             decimal postDebitorBalance = decimal.Parse(postDebitorAccountDetails["Balance"].ToString());
-
 
             Assert.AreEqual(initialDebitorBalance, postDebitorBalance, "Verify debitor account balance remains same when payment transaction fails.");
             Console.WriteLine("Initial account balance = [" + initialDebitorBalance + "], post payment transaction fail balance = [" + postDebitorBalance + "]");
